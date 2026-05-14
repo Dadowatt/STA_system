@@ -2,163 +2,168 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}STA{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <title>{% block title %} Dashboard - STA {% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 </head>
 
 <body class="bg-light">
 
-<div class="d-flex">
+    <!-- ===== SIDEBAR ===== -->
 
-  <aside class="sidebar bg-white border-end p-3 d-flex flex-column">
+    <aside class="sidebar bg-white border-end position-fixed top-0 start-0 d-flex flex-column">
 
-    <!-- LOGO -->
-    <div class="mb-5">
+        <!-- Logo -->
+        <div class="border-bottom px-3 py-3 d-flex align-items-center gap-2">
 
-      <div class="d-flex align-items-center gap-2">
+            <div class="logo-box bg-primary rounded d-flex align-items-center justify-content-center text-white fw-bold">
+                STA
+            </div>
 
-        <div class="bg-primary text-white rounded p-2">
-          <i class="bi bi-grid"></i>
-        </div>
-
-        <div>
-          <h6 class="fw-bold mb-0">STA Admin</h6>
-          <small class="text-secondary">
-            SYSTÈME DE TRAÇABILITÉ
-          </small>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- MENU -->
-    <small class="text-uppercase text-secondary fw-semibold mb-2">
-      Menu principal
-    </small>
-
-    <ul class="nav flex-column mb-4">
-
-      <li class="nav-item mb-1">
-        <a href="#" class="nav-link active bg-primary-subtle text-primary rounded">
-          <i class="bi bi-house-door me-2"></i>
-          Tableau de bord
-        </a>
-      </li>
-
-      <li class="nav-item mb-1">
-        <a href="#" class="nav-link text-secondary">
-          <i class="bi bi-lightning-charge me-2"></i>
-          Activités
-        </a>
-      </li>
-
-      <li class="nav-item mb-1">
-        <a href="#" class="nav-link text-secondary">
-          <i class="bi bi-tags me-2"></i>
-          Catégories
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="#" class="nav-link text-secondary">
-          <i class="bi bi-people me-2"></i>
-          Équipe
-        </a>
-      </li>
-
-    </ul>
-
-    <!-- SETTINGS -->
-    <small class="text-uppercase text-secondary fw-semibold mb-2">
-      Paramètres
-    </small>
-
-    <ul class="nav flex-column">
-
-      <li class="nav-item mb-1">
-        <a href="#" class="nav-link text-secondary">
-          <i class="bi bi-gear me-2"></i>
-          Configuration
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="#" class="nav-link text-secondary">
-          <i class="bi bi-shield-lock me-2"></i>
-          Sécurité
-        </a>
-      </li>
-
-    </ul>
-
-    <!-- BUTTON -->
-    <div class="mt-auto">
-
-      <button class="btn btn-primary w-100 rounded-3 py-2 shadow">
-        <i class="bi bi-plus-circle me-2"></i>
-        Nouvelle activité
-      </button>
-
-    </div>
-
-  </aside>
-
-  <main class="flex-grow-1 main-content">
-
-    <!-- HEADER -->
-    <header class="bg-white border-bottom px-4 py-3">
-
-      <div class="d-flex justify-content-end align-items-center">
-
-        <div class="d-flex align-items-center gap-3">
-
-          <div class="text-end">
-
-            <h6 class="mb-0 fw-bold">
-              Jean Dupont
-            </h6>
-
-            <small class="text-primary">
-              Administrateur
+            <small class="text-uppercase text-secondary fw-semibold sidebar-label">
+                Système de traçabilité d'activité
             </small>
 
-          </div>
+        </div>
 
-          <img
-            src="https://i.pravatar.cc/50"
-            alt=""
-            class="rounded-circle border"
-            width="40"
-            height="40"
-          >
+        <!-- Menu -->
+        <div class="p-3">
 
-          <i class="bi bi-power text-secondary"></i>
+            <!-- MENU PRINCIPAL -->
+            <small class="text-uppercase text-secondary fw-semibold sidebar-label">
+                Menu principal
+            </small>
+
+            <ul class="nav flex-column mt-2">
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-secondary d-flex align-items-center gap-2">
+                        <i class="bi bi-pie-chart-fill"></i>
+                        Tableau de bord
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-secondary d-flex align-items-center gap-2">
+                        <i class="bi bi-stack"></i>
+                        Activités
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-secondary d-flex align-items-center gap-2">
+                        <i class="bi bi-tags-fill"></i>
+                        Catégories
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- ACTIONS -->
+            <small class="text-uppercase text-secondary fw-semibold sidebar-label d-block mt-4">
+                Actions
+            </small>
+
+            <ul class="nav flex-column mt-2">
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link active-custom rounded d-flex align-items-center gap-2 fw-semibold">
+                        <i class="bi bi-plus-circle-fill"></i>
+                        Nouvelle activité
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-secondary d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark-arrow-down-fill"></i>
+                        Exporter les logs
+                    </a>
+                </li>
+
+            </ul>
 
         </div>
 
-      </div>
+        <!-- Footer -->
+        <div class="mt-auto p-3">
 
-    </header>
+            <div class="border rounded-3 bg-light p-2">
 
-    
-    <div class="p-4">
-        {% block content %}
-        {% endblock %}
+                <small class="text-uppercase text-secondary d-block">
+                    Version
+                </small>
 
-    </div>
+                <small class="fw-semibold text-dark">
+                    v2.0.26-stable
+                </small>
 
-  </main>
+            </div>
 
-</div>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+
+    <main class="main-content overflow-hidden">
+
+        <!-- HEADER -->
+        <header class="topbar bg-white border-bottom px-4 d-flex justify-content-end align-items-center">
+
+            <div class="d-flex align-items-center gap-3">
+
+                <!-- User -->
+                <div class="text-end">
+
+                    <div class="fw-bold small">
+                        Jean Dupont
+                    </div>
+
+                    <small class="text-uppercase text-secondary fw-semibold">
+                        Administrateur
+                    </small>
+
+                </div>
+
+                <!-- Avatar -->
+                <img 
+                    src="https://i.pravatar.cc/100"
+                    class="avatar rounded-circle"
+                    alt="avatar"
+                >
+
+                <!-- Logout -->
+                <form method="post" action="{% url 'logout' %}" class="d-inline">
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn btn-link text-decoration-none text-secondary d-flex align-items-center gap-2 small p-0">
+                        <i class="bi bi-power"></i>
+                        Déconnexion
+                    </button>
+                </form>
+
+            </div>
+
+        </header>
+
+        <!-- CONTENT -->
+        <section class="container-fluid p-4">
+
+            {% block content %}
+            {% endblock %}
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

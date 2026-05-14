@@ -1,0 +1,112 @@
+{% extends 'auth_base.html' %}
+
+{% block content %}
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
+
+    <div class="card auth-card shadow-lg border-0 col-lg-10">
+
+        <div class="row g-0">
+
+            <!-- LEFT -->
+            <div class="col-lg-6 left-side p-5 d-flex flex-column justify-content-between">
+
+                <div>
+
+                    <div class="d-flex align-items-center gap-3 mb-5">
+
+                        <div class="logo-box bg-primary rounded-3
+                                    text-white fw-bold
+                                    d-flex align-items-center
+                                    justify-content-center">
+
+                            STA
+
+                        </div>
+
+                        <small class="text-uppercase text-secondary fw-semibold">
+                            Système de traçabilité
+                        </small>
+
+                    </div>
+
+                    <h1 class="display-5 fw-bold text-dark mb-4">
+                        Gérez vos opérations en toute sécurité.
+                    </h1>
+
+                    <p class="text-secondary fs-5 lh-lg">
+                        Connectez-vous pour accéder à votre espace.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-6 bg-white p-5">
+
+                <div class="text-center mb-5">
+
+                    <h2 class="fw-bold display-6">
+                        Bienvenue
+                    </h2>
+
+                    <p class="text-secondary">
+                        Accédez à votre espace administrateur
+                    </p>
+
+                </div>
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Nom d'utilisateur
+                        </label>
+
+                        {{ form.username }}
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Mot de passe
+                        </label>
+
+                        {{ form.password }}
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-auth w-100">
+
+                        Connexion
+
+                    </button>
+
+                </form>
+
+                <div class="text-center mt-4">
+
+                    Pas encore de compte ?
+
+                    <a href="{% url 'register' %}">
+                        Créer un compte
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
