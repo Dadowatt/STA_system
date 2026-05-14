@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-
+from .models import Entry
 
 class RegisterForm(UserCreationForm):
 
@@ -77,3 +77,34 @@ class LoginForm(AuthenticationForm):
             'placeholder': 'Mot de passe'
         })
     )
+
+
+
+class EntryForm(forms.ModelForm):
+
+    class Meta:
+        model = Entry
+        fields = ['titre', 'categorie', 'contenu', 'image']
+
+        widgets = {
+
+            'titre': forms.TextInput(attrs={
+                'class': 'form-control form-control-lg',
+                'placeholder': 'Ex : Migration de base de données'
+            }),
+
+            'categorie': forms.Select(attrs={
+                'class': 'form-select form-select-lg'
+            }),
+
+            'contenu': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 5,
+                'placeholder': "Décrivez les détails de l'intervention..."
+            }),
+
+            'image': forms.ClearableFileInput(attrs={
+                'class': 'form-control'
+            }),
+
+        }

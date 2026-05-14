@@ -42,17 +42,19 @@
 
                 <div class="d-flex gap-2">
 
-                    <a href="{% url 'detail' entry.pk %}" class="btn btn-light border rounded action-btn">
+                    <a href="{% url 'entry-detail' entry.pk %}" class="btn btn-light border rounded action-btn">
                         <i class="bi bi-eye text-primary"></i>
                     </a>
 
-                    <button class="btn btn-light border rounded action-btn">
-                    <i class="bi bi-pencil text-warning"></i>
-                    </button>
+                    <a href="{% url 'entry-update' entry.id %}" class="btn btn-light border rounded action-btn">
+                        <i class="bi bi-pencil text-warning"></i>
+                    </a>
 
-                    <button class="btn btn-light border rounded action-btn">
-                    <i class="bi bi-trash text-danger"></i>
-                    </button>
+                    <a
+                        href="{% url 'entry-delete' entry.pk %}"
+                        class="btn btn-light border rounded action-btn">
+                        <i class="bi bi-trash text-danger"></i>
+                    </a>
 
                 </div>
 
@@ -63,5 +65,33 @@
             </div>
         {% endfor %}
       </div>
+
+      <nav class="mt-4 d-flex justify-content-center">
+    <ul class="pagination pagination-sm">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                ←
+            </a>
+        </li>
+        {% endif %}
+
+        <li class="page-item active">
+            <span class="page-link">
+                {{ page_obj.number }}
+            </span>
+        </li>
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                →
+            </a>
+        </li>
+        {% endif %}
+
+    </ul>
+</nav>
 
 {% endblock %}> 

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Titre -->
+    <div class="mb-4">
+
+        <div class="d-flex align-items-center gap-2 mb-1">
+
+            <a href="{% url 'dashboard' %}" class="text-decoration-none">
+                <i class="bi bi-arrow-left-short fs-5"></i>
+            </a>
+
+            <h4 class="fw-bold mb-0">
+                Créer une nouvelle activité
+            </h4>
+
+        </div>
+
+        <small class="text-secondary">
+            Veuillez remplir le formulaire ci-dessous pour enregistrer une nouvelle intervention.
+        </small>
+
+    </div>
+
+    <!-- Formulaire -->
+    <div class="card border-0 shadow-sm rounded-4 w-50 mx-auto">
+
+        <div class="card-body p-4">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- titre -->
+                <div class="mb-4">
+
+                    <label class="form-label fw-semibold small">
+                        Titre de l'activité
+                    </label>
+
+                    {{ form.titre }}
+
+                </div>
+
+                <!-- catégorie -->
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label fw-semibold small">
+                            Catégorie
+                        </label>
+
+                        {{ form.categorie }}
+
+                    </div>
+
+                </div>
+
+                <!-- description -->
+                <div class="mb-4">
+
+                    <label class="form-label fw-semibold small">
+                        Description détaillée
+                    </label>
+
+                    {{ form.contenu }}
+
+                </div>
+
+                <!-- upload -->
+                <div class="mb-4">
+
+                    <label class="form-label fw-semibold small">
+                        Preuves ou captures d'écran
+                    </label>
+
+                    <div class="border border-2 border-light-subtle rounded-4 p-5 text-center bg-light">
+
+                        <i class="bi bi-download text-primary fs-4"></i>
+
+                        <div class="fw-semibold mt-2 small">
+                            Glisser-déposer une capture d'écran
+                        </div>
+
+                        <small class="text-secondary">
+                            ou cliquer pour parcourir vos fichiers
+                        </small>
+
+                        <div class="mt-3">
+                            {{ form.image }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- boutons -->
+                <div class="border-top pt-4 d-flex justify-content-end gap-3">
+
+                    <a href="{% url 'dashboard' %}" class="btn btn-light border px-4">
+                        Annuler
+                    </a>
+
+                    <button 
+                        type="submit"
+                        class="btn btn-primary px-4"
+                    >
+                        <i class="bi bi-plus-lg"></i>
+                        Modifier l'activité
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- info -->
+    <div class="alert alert-primary border-0 mt-4 rounded-4">
+
+        <div class="d-flex align-items-start gap-2">
+
+            <i class="bi bi-info-circle-fill"></i>
+
+            <div>
+
+                <div class="fw-semibold small">
+                    Information importante
+                </div>
+
+                <small>
+                    Une notification sera automatiquement envoyée aux superviseurs concernés dès l'enregistrement de cette activité.
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
