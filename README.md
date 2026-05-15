@@ -45,6 +45,27 @@ Modèle utilisateur intégré de Django utilisé pour identifier l’auteur des 
 
 ---
 
+## Automatisation avec Django Signals
+
+Le projet utilise les Django Signals pour automatiser certaines actions côté backend.
+
+### Fonctionnement
+
+À chaque création d’une nouvelle Entry, un signal Django (`post_save`) est déclenché automatiquement.
+
+Cela permet de :
+
+- détecter la création d’une nouvelle activité
+- afficher un log dans le terminal du serveur
+- tracer les actions sans intervention manuelle
+
+### Exemple de log
+
+Lorsqu’une activité est créée, le terminal affiche :
+
+[LOG] Entry créée par username le 15/05/2026 à 14:30
+---
+
 ## Installation du projet
 
 ### 1. Cloner le projet
