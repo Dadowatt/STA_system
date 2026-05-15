@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Entry
+from .models import Entry, Category
 from django.urls import reverse_lazy
 from .forms import RegisterForm, EntryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -14,6 +14,21 @@ class DashboardView(ListView):
     paginate_by = 4
 
 
+class CategorieListView(ListView):
+    model = Category
+    template_name = 'entries/list_categorie.html'
+    context_object_name = 'categories'
+
+
+class EntryListView(ListView):
+    model = Entry
+    template_name = 'entries/liste.html'
+    context_object_name = 'entries'
+    ordering = ['-date_creation']
+    paginate_by = 3
+    
+
+
 class EntryDetailView(DetailView):
     model = Entry
     template_name = 'entries/detail.html'
@@ -25,7 +40,6 @@ class RegisterView(CreateView):
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
 
-    
 
 class EntryCreateView(LoginRequiredMixin, CreateView):
     model = Entry
@@ -37,6 +51,7 @@ class EntryCreateView(LoginRequiredMixin, CreateView):
         form.instance.auteur = self.request.user
         return super().form_valid(form)
     
+
 
 class EntryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Entry
