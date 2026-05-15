@@ -1,51 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container py-5">
-
+  <div class="container py-5">
     <div class="card border-0 shadow-sm p-4">
+      <h3 class="fw-bold text-danger mb-3">Supprimer cette activité ?</h3>
 
-        <h3 class="fw-bold text-danger mb-3">
-            Supprimer cette activité ?
-        </h3>
+      <p class="text-secondary">
+        Vous êtes sur le point de supprimer :
 
-        <p class="text-secondary">
+        <strong>"{{ object.titre }}"</strong>
+      </p>
 
-            Vous êtes sur le point de supprimer :
+      {% if object.image %}
+        <img src="{{ object.image.url }}" class="img-fluid rounded mb-4" style="max-height:300px; object-fit:cover;" alt="" />
+      {% endif %}
 
-            <strong>
-                "{{ object.titre }}"
-            </strong>
+      <form method="POST">
+        {% csrf_token %}
 
-        </p>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-danger">Oui, supprimer</button>
 
-        {% if object.image %}
-            <img
-                src="{{ object.image.url }}"
-                class="img-fluid rounded mb-4"
-                style="max-height:300px; object-fit:cover;"
-                alt=""
-            >
-        {% endif %}
-
-        <form method="POST">
-
-            {% csrf_token %}
-
-            <div class="d-flex gap-2">
-
-                <button type="submit" class="btn btn-danger">
-                    Oui, supprimer
-                </button>
-
-                <a href="{% url 'dashboard' %}" class="btn btn-secondary">
-                    Annuler
-                </a>
-
-            </div>
-
-        </form>
-
+          <a href="{% url 'dashboard' %}" class="btn btn-secondary">Annuler</a>
+        </div>
+      </form>
     </div>
-
-</div>
+  </div>
 {% endblock %}

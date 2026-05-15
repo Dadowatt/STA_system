@@ -1,145 +1,78 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <!-- CONTENT -->
-
-<div class="container-fluid p-4">
-
-    <!-- HEADER -->
+  <div class="container-fluid p-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex align-items-center gap-3">
+        <a href="{% url 'dashboard' %}" class="btn btn-light border rounded-3"><i class="bi bi-chevron-left"></i></a>
 
-        <div class="d-flex align-items-center gap-3">
+        <h3 class="fw-bold mb-0">Détails de l'activité</h3>
+      </div>
 
-            <a href="{% url 'dashboard' %}" class="btn btn-light border rounded-3"><i class="bi bi-chevron-left"></i></a>
+      <div class="d-flex gap-2">
+        <a href="{% url 'entry-delete' entry.pk %}" class="btn btn-light border text-danger">
+    <i class="bi bi-trash me-2"></i>
+    Supprimer
+</a>
 
-            <h3 class="fw-bold mb-0">
-                Détails de l'activité
-            </h3>
-
-        </div>
-
-        <div class="d-flex gap-2">
-
-            <button class="btn btn-light border text-danger">
-                <i class="bi bi-trash me-2"></i>
-                Supprimer
-            </button>
-
-            <button class="btn btn-primary">
-                <i class="bi bi-pencil-square me-2"></i>
-                Modifier
-            </button>
-
-        </div>
-
+        <a href="{% url 'entry-update' entry.pk %}" class="btn btn-primary">
+    <i class="bi bi-pencil-square me-2"></i>
+    Modifier
+</a>
+      </div>
     </div>
 
-    <!-- CARD -->
     <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-body p-4">
+        <div class="row mb-4">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <small class="text-uppercase text-secondary fw-semibold">Titre de l'activité</small>
 
-        <div class="card-body p-4">
+            <h5 class="fw-bold mt-2 mb-0">{{ entry.titre }}</h5>
+          </div>
 
-            <!-- TOP INFOS -->
-            <div class="row mb-4">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <small class="text-uppercase text-secondary fw-semibold">Catégorie</small>
 
-                <!-- TITLE -->
-                <div class="col-lg-4 mb-4 mb-lg-0">
+            <div class="mt-2 d-flex align-items-center gap-2">
+              <span class="text-primary"><i class="bi bi-tags-fill"></i></span>
 
-                    <small class="text-uppercase text-secondary fw-semibold">
-                        Titre de l'activité
-                    </small>
-
-                    <h5 class="fw-bold mt-2 mb-0">{{ entry.titre }}</h5>
-
-                </div>
-
-                <!-- CATEGORY -->
-                <div class="col-lg-4 mb-4 mb-lg-0">
-
-                    <small class="text-uppercase text-secondary fw-semibold">
-                        Catégorie
-                    </small>
-
-                    <div class="mt-2 d-flex align-items-center gap-2">
-
-                        <span class="text-primary">
-                            <i class="bi bi-tags-fill"></i>
-                        </span>
-
-                        <span class="fw-semibold">{{ entry.categorie.nom }}</span>
-
-                    </div>
-
-                </div>
-
-                <!-- DATE -->
-                <div class="col-lg-4">
-
-                    <small class="text-uppercase text-secondary fw-semibold">
-                        Date d'intervention
-                    </small>
-
-                    <div class="mt-2 d-flex align-items-center gap-2">
-
-                        <span class="text-secondary">
-                            <i class="bi bi-calendar-event"></i>
-                        </span>
-
-                        <span class="fw-semibold">
-                            12/10/2023
-                        </span>
-
-                    </div>
-
-                </div>
-
+              <span class="fw-semibold">{{ entry.categorie.nom }}</span>
             </div>
+          </div>
 
-            <!-- AUTHOR -->
-            <div class="bg-light border rounded-4 p-3 mb-4">
+          <div class="col-lg-4">
+            <small class="text-uppercase text-secondary fw-semibold">Date d'intervention</small>
 
-                <div class="d-flex align-items-center gap-3"> 
-                    <small class="text-uppercase text-secondary fw-semibold">
-                        Auteur de l'intervention: </small>
-                <div>
-                </div>
-                
+            <div class="mt-2 d-flex align-items-center gap-2">
+              <span class="text-secondary"><i class="bi bi-calendar-event"></i></span>
+
+              <span class="fw-semibold">12/10/2023</span>
             </div>
-            <h6 class="mb-0 fw-bold"><span><i class="bi bi-person me-2"></i></span> {{ entry.auteur.username }}</h6>
-
-            </div>
-
-            <!-- DESCRIPTION -->
-            <div class="mb-4">
-
-                <small class="text-uppercase text-secondary fw-semibold">
-                    Description détaillée
-                </small>
-
-                <p class="text-secondary mt-3 mb-0 lh-lg">{{ entry.contenu }}</p>
-
-            </div>
-
-            <!-- SCREENSHOTS -->
-            <div>
-
-                <small class="text-uppercase text-secondary fw-semibold d-block mb-3">
-                    Preuves ou captures d'écran
-                </small>
-
-                <div class="bg-light border rounded-4 overflow-hidden" style="height: 260px;">
-    <img src="{{ entry.image.url }}"
-         alt="{{ entry.titre }}"
-         class="w-100 h-100"
-         style="object-fit: cover;">
-</div>
-
-            </div>
-
+          </div>
         </div>
 
+        <div class="bg-light border rounded-4 p-3 mb-4">
+          <div class="d-flex align-items-center gap-3">
+            <small class="text-uppercase text-secondary fw-semibold">Auteur de l'intervention:</small>
+            <div></div>
+          </div>
+          <h6 class="mb-0 fw-bold"><span><i class="bi bi-person me-2"></i></span> {{ entry.auteur.username }}</h6>
+        </div>
+
+        <div class="mb-4">
+          <small class="text-uppercase text-secondary fw-semibold">Description détaillée</small>
+
+          <p class="text-secondary mt-3 mb-0 lh-lg">{{ entry.contenu }}</p>
+        </div>
+
+        <div>
+          <small class="text-uppercase text-secondary fw-semibold d-block mb-3">Preuves ou captures d'écran</small>
+
+          <div class="bg-light border rounded-4 overflow-hidden" style="height: 260px;">
+            <img src="{{ entry.image.url }}" alt="{{ entry.titre }}" class="w-100 h-100" style="object-fit: cover;" />
+          </div>
+        </div>
+      </div>
     </div>
-
-</div>
-
+  </div>
 {% endblock %}

@@ -1,5 +1,8 @@
-/* Seulement les styles impossibles ou compliqués avec Bootstrap */
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .sidebar {
   width: 260px;
   min-height: 100vh;
