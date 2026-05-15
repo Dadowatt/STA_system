@@ -48,6 +48,12 @@
     object-fit: cover;
 }
 
+.form-control:focus,
+.form-select:focus {
+    box-shadow: none;
+    border: 1px solid #dee2e6;
+}
+
 /* AUTH PAGES */
 
 body {

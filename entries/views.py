@@ -4,14 +4,39 @@ from .models import Entry, Category
 from django.urls import reverse_lazy
 from .forms import RegisterForm, EntryForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 
 
-class DashboardView(ListView):
+class DashboardView(LoginRequiredMixin, ListView):
     model = Entry
     template_name = 'entries/dashboard.html'
     context_object_name = 'entries'
     ordering = ['-date_creation']
     paginate_by = 4
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        search = self.request.GET.get('search')
+        category = self.request.GET.get('category')
+
+        if search:
+            queryset = queryset.filter(
+                Q(titre__icontains=search) |
+                Q(contenu__icontains=search) |
+                Q(auteur__username__icontains=search) |
+                Q(categorie__nom__icontains=search) |
+                Q(id__icontains=search)
+            )
+
+        if category and category != "all":
+            queryset = queryset.filter(categorie__id=category)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 class CategorieListView(ListView):
