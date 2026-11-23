@@ -48,6 +48,18 @@ class RegisterForm(UserCreationForm):
         })
     )
 
+    
+    def clean_email(self):
+        email = self.cleaned_data["email"].strip()
+
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError(
+                "Cette adresse email est déjà utilisée."
+            )
+
+        return email
+
+
     class Meta:
 
         model = User
