@@ -90,6 +90,10 @@ class LoginForm(AuthenticationForm):
         })
     )
 
+    error_messages = {
+        'invalid_login': "Nom d'utilisateur ou mot de passe incorrect.",
+        'inactive': "Ce compte est désactivé.",
+    }
 
 
 class EntryForm(forms.ModelForm):
@@ -110,8 +114,8 @@ class EntryForm(forms.ModelForm):
             }),
 
             'contenu': forms.Textarea(attrs={
-                'class': 'form-control',
-                'rows': 5,
+                'class': 'form-control h-auto',
+                'rows': 3,
                 'placeholder': "Décrivez les détails de l'intervention..."
             }),
 
